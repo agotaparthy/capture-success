@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Capture Success — capturesuccess.org
 
-## Getting Started
+Site for Capture Success, a student startup network in the Triangle. Six pages
+(home, accelerator, companies, apply, board, finnovate), the Fall 2026 cohort,
+partner wall, and company profiles.
 
-First, run the development server:
+**Live:** https://capture-success.vercel.app (to become capturesuccess.org)
+
+## Stack
+
+- Next.js 16 (App Router, static output) · React 19 · Tailwind CSS v4
+- No other runtime dependencies — animations are CSS/IntersectionObserver
+- Fonts via `next/font`: Space Grotesk + DM Sans
+
+## Run it locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Note: `.npmrc` pins the registry to `registry.yarnpkg.com` because some school
+networks blackhole `registry.npmjs.org`. Harmless everywhere else.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where everything lives
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **`src/lib/site.ts` is the single source of truth.** Dates, the Google Form
+  link, venue, partners, companies, board members, FAQ, milestones — change it
+  there and every page updates. No content is hardcoded in pages.
+- `src/app/*` — one folder per page.
+- `src/components/*` — nav, footer, partner wall, company visuals
+  (thermal view, court board, resin scanner), countdown, gallery.
+- `public/portfolio/*` — company marks. `public/partners/*` — partner logos.
+- `src/app/opengraph-image.tsx` — the social share card (edge-generated).
 
-## Learn More
+## Deploying + putting it on capturesuccess.org
 
-To learn more about Next.js, take a look at the following resources:
+The domain `capturesuccess.org` is attached to an existing Vercel account
+(DNS at Namecheap already points to Vercel — apex `76.76.21.21`, www
+`cname.vercel-dns.com` — no DNS changes needed).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+From the Vercel account that owns the domain:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Add New → Project → Import** this GitHub repo
+   (`agotaparthy/capture-success`). Framework auto-detects as Next.js;
+   no env vars needed. Deploy.
+2. Project → **Settings → Domains** → move `capturesuccess.org` and
+   `www.capturesuccess.org` from the old site's project to this one
+   (or remove from the old project, then add here).
+3. Done — the domain cuts over instantly. Every push to `main` redeploys.
 
-## Deploy on Vercel
+There is also a parallel deployment at capture-success.vercel.app under a
+second Vercel account; once the domain is attached to the imported project,
+that one can be deleted.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+capturesuccess.inc@gmail.com · [@capturesuccessinc](https://www.instagram.com/capturesuccessinc/)
