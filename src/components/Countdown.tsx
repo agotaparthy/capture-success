@@ -35,24 +35,20 @@ export default function Countdown({ iso }: { iso: string }) {
     };
   }, [target]);
 
-  if (!t) return <div className="h-[46px]" aria-hidden />;
+  if (!t) return <div className="h-[52px]" aria-hidden />;
 
   if (t.over) {
-    return (
-      <p className="t-h3" style={{ color: "var(--color-blue)" }}>
-        Cohort in session
-      </p>
-    );
+    return <p className="h3" style={{ color: "var(--color-blue)" }}>Cohort in session</p>;
   }
 
   return (
-    <div className="flex items-baseline gap-5">
+    <div className="flex items-baseline gap-6">
       {UNITS.map((u) => (
-        <div key={u.key} className="flex items-baseline gap-1">
-          <span className="t-num text-[2rem] leading-none">
+        <div key={u.key} className="flex items-baseline gap-1.5">
+          <span className="big-num text-[2.6rem] leading-none">
             {String(t[u.key]).padStart(2, "0")}
           </span>
-          <span className="soft text-[13px] font-semibold">{u.label}</span>
+          <span className="log">{u.label}</span>
         </div>
       ))}
     </div>

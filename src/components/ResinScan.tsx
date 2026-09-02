@@ -49,10 +49,10 @@ export function ResinScan() {
 
   return (
     <figure
-      className="flex aspect-[4/3] w-full flex-col rounded-[14px] border p-4"
+      className="flex aspect-[4/3] w-full flex-col border p-4"
       style={{
-        borderColor: "var(--color-line)",
-        background: "var(--color-surface)",
+        borderColor: "var(--color-ink)",
+        background: "var(--color-paper-2)",
       }}
     >
       <figcaption className="flex items-center justify-between">
@@ -66,7 +66,7 @@ export function ResinScan() {
         style={{
           background: locked ? "var(--color-blue)" : "#fff",
           color: locked ? "#fff" : "var(--color-ink)",
-          border: "1px solid var(--color-line)",
+          border: "1px solid var(--color-rule)",
         }}
       >
         <div>
@@ -101,7 +101,7 @@ export function ResinScan() {
               className="flex flex-col items-center justify-center  transition-colors duration-200"
               style={{
                 background: on ? "var(--color-brand)" : "#fff",
-                border: "1px solid var(--color-line)",
+                border: "1px solid var(--color-rule)",
                 color: on ? "var(--color-blue-ink)" : "var(--color-soft)",
               }}
             >

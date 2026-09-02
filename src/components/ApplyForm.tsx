@@ -125,7 +125,7 @@ export default function ApplyForm() {
     <div className="grid gap-6 lg:grid-cols-[260px_1fr]">
       {/* Track picker */}
       <div>
-        <p className="t-kicker mb-3">Application type</p>
+        <p className="log mb-3">Application type</p>
         <div className="flex gap-2 lg:flex-col">
           {TRACKS.map((t, i) => {
             const on = i === active;
@@ -139,14 +139,14 @@ export default function ApplyForm() {
                 }}
                 className="flex-1  border px-4 py-3 text-left transition-colors duration-200 lg:flex-none"
                 style={{
-                  borderColor: on ? "var(--color-blue-deep)" : "var(--color-edge)",
-                  background: on ? "var(--color-blue-deep)" : "#fff",
-                  color: on ? "#fff" : "var(--color-ink)",
+                  borderColor: on ? "var(--color-ink)" : "var(--color-rule)",
+                  background: on ? "var(--color-ink)" : "transparent",
+                  color: on ? "var(--color-paper)" : "var(--color-ink)",
                 }}
               >
                 <span
                   className="block text-[13px] font-medium"
-                  style={{ color: on ? "#9ecbff" : "var(--color-soft)" }}
+                  style={{ color: on ? "var(--color-sky)" : "var(--color-soft)" }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -155,7 +155,7 @@ export default function ApplyForm() {
                 </span>
                 <span
                   className="mt-0.5 hidden text-[13px] lg:block"
-                  style={{ color: on ? "#9ecbff" : "var(--color-soft)" }}
+                  style={{ color: on ? "var(--color-sky)" : "var(--color-soft)" }}
                 >
                   {t.title}
                 </span>
@@ -166,12 +166,12 @@ export default function ApplyForm() {
       </div>
 
       {/* Form */}
-      <div className="card p-6">
-        <p className="t-kicker">{track.kind} application</p>
-        <h2 className="t-h2 mt-1.5 text-[24px]">
+      <div className="bar pt-6">
+        <p className="log">{track.kind} application</p>
+        <h2 className="h2 mt-1.5 text-[26px]">
           {track.title}
         </h2>
-        <p className="muted mt-2 max-w-[58ch]">{track.blurb}</p>
+        <p className="prose mt-2">{track.blurb}</p>
 
         <form
           className="mt-6 grid gap-4 sm:grid-cols-2"
@@ -203,9 +203,9 @@ export default function ApplyForm() {
                     rows={3}
                     value={get(f.id)}
                     onChange={(e) => set(f.id, e.target.value)}
-                    className="w-full resize-y  border bg-white px-3 py-2.5 text-[15px] outline-none transition-colors"
+                    className="w-full resize-y border bg-transparent px-3 py-2.5 text-[15px] outline-none transition-colors"
                     style={{
-                      borderColor: invalid ? "#C0341F" : "var(--color-edge-2)",
+                      borderColor: invalid ? "#C0341F" : "var(--color-rule)",
                     }}
                     placeholder={f.hint ?? ""}
                   />
@@ -214,9 +214,9 @@ export default function ApplyForm() {
                     type={f.kind === "email" ? "email" : "text"}
                     value={get(f.id)}
                     onChange={(e) => set(f.id, e.target.value)}
-                    className="w-full  border bg-white px-3 py-2.5 text-[15px] outline-none transition-colors"
+                    className="w-full border bg-transparent px-3 py-2.5 text-[15px] outline-none transition-colors"
                     style={{
-                      borderColor: invalid ? "#C0341F" : "var(--color-edge-2)",
+                      borderColor: invalid ? "#C0341F" : "var(--color-rule)",
                     }}
                     placeholder={f.hint ?? ""}
                   />
@@ -234,7 +234,7 @@ export default function ApplyForm() {
                 ? `${missing.length} required field${missing.length === 1 ? "" : "s"} left.`
                 : "Nothing is sent automatically — this opens an email draft you can review."}
             </p>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn">
               Open email draft
               <span aria-hidden>→</span>
             </button>

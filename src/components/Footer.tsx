@@ -1,78 +1,45 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ACCELERATOR, ACCELERATOR_FORM, NAV, SITE } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="on-navy mt-24">
-      <div className="shell py-14">
-        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
-          <div>
-            <Link href="/" className="flex items-center gap-2.5">
-              <Image
-                src="/brand/capture-mark.png"
-                alt=""
-                width={30}
-                height={30}
-                className="rounded-lg"
-              />
-              <span className="text-[16px] font-extrabold tracking-[-0.028em]">
-                Capture Success
-              </span>
-            </Link>
-            <p className="mt-4 max-w-[36ch] text-[15px]" style={{ color: "rgba(255,255,255,.72)" }}>
-              A student startup network in the Triangle. Founders, builders, and
-              the people who help them ship.
-            </p>
-            <a
-              href={`mailto:${SITE.email}`}
-              className="lnk mt-4 text-[15px]" style={{ color: "var(--color-brand)" }}
-            >
+    <footer className="bar mt-20">
+      <div className="shell flex flex-wrap items-baseline justify-between gap-x-12 gap-y-8 py-10">
+        <div className="max-w-[40ch]">
+          <p className="h3 text-[18px]">Capture Success</p>
+          <p className="prose mt-2 text-[14.5px]">
+            A student startup network in the Triangle. Founders, builders, and
+            the people who help them ship.
+          </p>
+          <p className="mt-3 text-[14.5px]">
+            <a href={`mailto:${SITE.email}`} className="a">
               {SITE.email}
             </a>
-          </div>
-
-          <div>
-            <p className="t-h3 mb-3 text-[15px]">Pages</p>
-            <ul className="space-y-2">
-              {NAV.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-[15px] transition-colors hover:text-[var(--color-brand)]" style={{ color: "rgba(255,255,255,.72)" }}>
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="t-h3 mb-3 text-[15px]">Elsewhere</p>
-            <ul className="space-y-2">
-              <li>
-                <a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="text-[15px] transition-colors hover:text-[var(--color-brand)]" style={{ color: "rgba(255,255,255,.72)" }}>
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href={SITE.discord} target="_blank" rel="noopener noreferrer" className="text-[15px] transition-colors hover:text-[var(--color-brand)]" style={{ color: "rgba(255,255,255,.72)" }}>
-                  Discord
-                </a>
-              </li>
-              <li>
-                <a href={ACCELERATOR_FORM} target="_blank" rel="noopener noreferrer" className="text-[15px] transition-colors hover:text-[var(--color-brand)]" style={{ color: "rgba(255,255,255,.72)" }}>
-                  Apply to the cohort
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t pt-6">
-          <p className="text-[14px]" style={{ color: "rgba(255,255,255,.5)" }}>
-            © {new Date().getFullYear()} {SITE.legal}
           </p>
-          <p className="text-[14px]" style={{ color: "rgba(255,255,255,.5)" }}>
-            Fall 2026 · {ACCELERATOR.rangeLabel} · {ACCELERATOR.venue.name}
+        </div>
+        <div className="flex gap-14 text-[14.5px]">
+          <ul className="space-y-1.5">
+            {NAV.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="muted hover:text-[var(--color-blue)]">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <ul className="space-y-1.5">
+            <li><a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="muted hover:text-[var(--color-blue)]">Instagram</a></li>
+            <li><a href={SITE.discord} target="_blank" rel="noopener noreferrer" className="muted hover:text-[var(--color-blue)]">Discord</a></li>
+            <li><a href={ACCELERATOR_FORM} target="_blank" rel="noopener noreferrer" className="muted hover:text-[var(--color-blue)]">Apply</a></li>
+          </ul>
+        </div>
+      </div>
+      <div className="hairline">
+        <div className="shell flex flex-wrap items-baseline justify-between gap-3 py-4">
+          <p className="log">© {new Date().getFullYear()} capture success inc.</p>
+          <p className="log">
+            fall 2026 · {ACCELERATOR.rangeLabel.toLowerCase()} ·{" "}
+            {ACCELERATOR.venue.name.toLowerCase()} · free
           </p>
         </div>
       </div>

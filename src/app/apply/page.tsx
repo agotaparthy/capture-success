@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 export default function ApplyPage() {
   return (
     <>
-      <section className="shell pt-12 pb-10">
+      <section className="shell pt-14 pb-10">
         <Reveal>
-          <p className="t-kicker">Applications</p>
-          <h1 className="t-hero mt-2 max-w-[16ch]">
-            Tell us what you want to build.
+          <p className="log">applications — founder · builder · partner</p>
+          <h1 className="h-hero mt-5 max-w-[16ch]">
+            Tell us what you want to <span className="mark">build.</span>
           </h1>
-          <p className="t-lead prose-w mt-5">
+          <p className="prose mt-6 text-[17px]">
             Pick the track that fits. Fill in the form and we open a structured
             email draft with every answer already in it.
           </p>
@@ -32,26 +32,21 @@ export default function ApplyPage() {
             href={ACCELERATOR_FORM}
             target="_blank"
             rel="noopener noreferrer"
-            className="on-blue flex flex-wrap items-center justify-between gap-5 rounded-[18px] p-7 transition-transform hover:-translate-y-0.5"
+            className="block px-8 py-9 text-white sm:px-10"
+            style={{ background: "var(--color-blue)" }}
           >
-            <div>
-              <p className="text-[13px] font-bold" style={{ color: "rgba(255,255,255,.75)" }}>
-                Applying to the {ACCELERATOR.cohort} accelerator?
-              </p>
-              <p className="mt-1 text-[19px] font-extrabold tracking-[-0.022em]">
-                That has its own two-minute application.
-              </p>
-              <p className="mt-1 text-[14px]" style={{ color: "rgba(255,255,255,.75)" }}>
-                {ACCELERATOR.rangeLabel} · Mondays {ACCELERATOR.time} ·{" "}
-                {ACCELERATOR.venue.name} · Free
-              </p>
-            </div>
-            <span className="btn btn-white">Open the cohort application ↗</span>
+            <p className="log" style={{ color: "rgba(255,255,255,.7)" }}>
+              applying to the fall 2026 accelerator? that has its own two-minute form
+            </p>
+            <p className="h2 mt-2 text-[26px]">Open the cohort application</p>
+            <p className="log mt-2" style={{ color: "rgba(255,255,255,.7)" }}>
+              {ACCELERATOR.rangeLabel.toLowerCase()} · mondays · {ACCELERATOR.venue.name.toLowerCase()} · free
+            </p>
           </a>
         </Reveal>
       </section>
 
-      <section className="shell pb-4">
+      <section className="shell pb-8">
         <Suspense fallback={<div className="h-[480px]" aria-hidden />}>
           <ApplyForm />
         </Suspense>

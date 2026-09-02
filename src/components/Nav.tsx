@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,17 +7,9 @@ import { ACCELERATOR_FORM, NAV } from "@/lib/site";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const [solid, setSolid] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => setOpen(false), [pathname]);
-
-  useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -35,51 +26,35 @@ export default function Nav() {
 
   return (
     <>
-      <a
-        href={ACCELERATOR_FORM}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block py-2 text-center text-[13px] font-bold text-white transition-colors"
-        style={{ background: "var(--color-navy)" }}
-      >
-        Fall 2026 applications are open — first session Sept 14 at Frontier RTP{" "}
-        <span style={{ color: "var(--color-brand)" }}>Apply free →</span>
-      </a>
       <header
-        className="sticky top-0 z-50 transition-all duration-300"
-        style={{
-          background: "rgba(255,255,255,.85)",
-          backdropFilter: "saturate(180%) blur(12px)",
-          WebkitBackdropFilter: "saturate(180%) blur(12px)",
-          borderBottom: `1px solid ${solid ? "var(--color-line)" : "transparent"}`,
-        }}
+        className="sticky top-0 z-50 border-b-2 bg-[var(--color-paper)]"
+        style={{ borderColor: "var(--color-ink)" }}
       >
-        <nav className="shell flex h-[68px] items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <Image
-              src="/brand/capture-mark.png"
-              alt=""
-              width={30}
-              height={30}
-              className="rounded-lg"
-              priority
-            />
-            <span className="text-[16px] font-extrabold tracking-[-0.028em]">
+        <nav className="shell flex h-[62px] items-center justify-between">
+          <Link
+            href="/"
+            className="flex items-baseline gap-2.5"
+            style={{ fontFamily: "var(--font-head)" }}
+          >
+            <span className="text-[19px] font-bold tracking-[-0.02em]">
               Capture Success
             </span>
+            <span className="log hidden sm:inline">est. 2026 — rtp, nc</span>
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-baseline gap-6 md:flex">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[15px] font-semibold transition-colors"
+                className="text-[15px]"
                 style={{
                   color:
                     pathname === item.href
                       ? "var(--color-blue)"
                       : "var(--color-body)",
+                  textDecoration: pathname === item.href ? "underline" : "none",
+                  textUnderlineOffset: 4,
                 }}
               >
                 {item.label}
@@ -89,9 +64,9 @@ export default function Nav() {
               href={ACCELERATOR_FORM}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary btn-sm"
+              className="btn h-9 px-4 text-[14px]"
             >
-              Apply now
+              Apply
             </a>
           </div>
 
@@ -100,46 +75,25 @@ export default function Nav() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="relative z-50 grid h-10 w-10 place-items-center md:hidden"
+            className="log log-ink md:hidden"
           >
-            <span className="relative block h-3.5 w-5">
-              <span
-                className="absolute left-0 block h-[2px] w-5 rounded-full transition-all duration-300"
-                style={{
-                  background: "var(--color-ink)",
-                  top: open ? 6 : 1,
-                  transform: open ? "rotate(45deg)" : "none",
-                }}
-              />
-              <span
-                className="absolute left-0 block h-[2px] w-5 rounded-full transition-all duration-300"
-                style={{
-                  background: "var(--color-ink)",
-                  top: open ? 6 : 12,
-                  transform: open ? "rotate(-45deg)" : "none",
-                }}
-              />
-            </span>
+            {open ? "close" : "menu"}
           </button>
         </nav>
       </header>
 
       <div
-        className="fixed inset-0 z-40 bg-white md:hidden"
+        className="fixed inset-0 z-40 bg-[var(--color-paper)] md:hidden"
         style={{
           pointerEvents: open ? "auto" : "none",
           opacity: open ? 1 : 0,
-          transition: "opacity .2s ease",
-          paddingTop: 68,
+          transition: "opacity .18s ease",
+          paddingTop: 62,
         }}
       >
-        <div className="shell flex flex-col pt-6">
+        <div className="shell rows flex flex-col pt-4">
           {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="t-h3 border-b py-5"
-            >
+            <Link key={item.href} href={item.href} className="h3 py-5 text-[28px]">
               {item.label}
             </Link>
           ))}
@@ -147,9 +101,9 @@ export default function Nav() {
             href={ACCELERATOR_FORM}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary mt-7 w-full"
+            className="btn mt-8 w-full justify-center"
           >
-            Apply now
+            Apply — Fall 2026
           </a>
         </div>
       </div>

@@ -12,7 +12,7 @@ export function ThermalView() {
     <figure
       className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px]"
       style={{
-        borderColor: "var(--color-line)",
+        borderColor: "var(--color-ink)",
         background:
           "radial-gradient(120% 90% at 30% 20%, #2a1206 0%, #160a06 42%, #0a0608 100%)",
       }}
@@ -135,10 +135,10 @@ export function CourtBoard() {
 
   return (
     <figure
-      className="flex aspect-[4/3] w-full flex-col rounded-[14px] border p-4"
+      className="flex aspect-[4/3] w-full flex-col border p-4"
       style={{
-        borderColor: "var(--color-line)",
-        background: "var(--color-surface)",
+        borderColor: "var(--color-ink)",
+        background: "var(--color-paper-2)",
       }}
     >
       <figcaption className="flex items-center justify-between">
