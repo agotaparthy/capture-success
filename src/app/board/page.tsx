@@ -1,59 +1,70 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { ACCELERATOR_FORM, BOARD, COFOUNDERS } from "@/lib/site";
+import { ACCELERATOR_FORM, BOARD, COFOUNDERS, type Person } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Board",
   description: "The people behind Capture Success.",
 };
 
+function initials(name: string) {
+  return name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase();
+}
+
+function Grid({ people }: { people: Person[] }) {
+  return (
+    <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {people.map((p) => (
+        <div key={p.name} className="card flex items-center gap-3.5 p-5">
+          <span
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-[14px] font-extrabold"
+            style={{ background: "var(--color-surface-2)", color: "var(--color-blue)" }}
+          >
+            {initials(p.name)}
+          </span>
+          <p className="t-h3 text-[16px]">{p.name}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function BoardPage() {
   return (
     <>
-      <section className="shell pt-14 pb-10">
+      <section className="shell pt-12 pb-10">
         <Reveal>
-          <p className="log">the board — 2026</p>
-          <h1 className="h-hero mt-5 max-w-[15ch]">
-            The people <span className="mark">behind it.</span>
-          </h1>
+          <p className="t-kicker">Board · 2026</p>
+          <h1 className="t-hero mt-2 max-w-[16ch]">The people behind it.</h1>
         </Reveal>
       </section>
 
-      <section className="shell pb-12">
-        <h2 className="h2 text-[24px]">Co-founders</h2>
-        <div className="rows bar mt-4">
-          {COFOUNDERS.map((p, i) => (
-            <div key={p.name} className="flex items-baseline gap-5 py-4">
-              <span className="log w-7 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-              <span className="h3 text-[21px]">{p.name}</span>
-            </div>
-          ))}
-        </div>
+      <section className="shell pb-10">
+        <h2 className="t-h2">Co-founders</h2>
+        <Grid people={COFOUNDERS} />
       </section>
 
       <section className="shell pb-14">
-        <h2 className="h2 text-[24px]">Board members</h2>
-        <div className="rows bar mt-4">
-          {BOARD.map((p, i) => (
-            <div key={p.name} className="flex items-baseline gap-5 py-4">
-              <span className="log w-7 shrink-0">{String(COFOUNDERS.length + i + 1).padStart(2, "0")}</span>
-              <span className="h3 text-[21px]">{p.name}</span>
-            </div>
-          ))}
-        </div>
+        <h2 className="t-h2">Board members</h2>
+        <Grid people={BOARD} />
       </section>
 
-      <section className="shell pb-8">
-        <div className="bar flex flex-wrap items-baseline justify-between gap-6 pt-7">
-          <h2 className="h2 max-w-[20ch] text-[26px]">
+      <section className="shell pb-4">
+        <div className="tile flex flex-wrap items-center justify-between gap-5 p-8">
+          <p className="t-h2 max-w-[22ch] text-[24px]">
             Building something? Tell us about it.
-          </h2>
-          <div className="flex flex-wrap items-center gap-5">
-            <a href={ACCELERATOR_FORM} target="_blank" rel="noopener noreferrer" className="btn">
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={ACCELERATOR_FORM}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
               Apply to the cohort
             </a>
-            <Link href="/apply?type=founder" className="a text-[15.5px]">
+            <Link href="/apply?type=founder" className="btn btn-outline">
               Apply as a founder
             </Link>
           </div>

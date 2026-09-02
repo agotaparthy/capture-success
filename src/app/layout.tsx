@@ -1,28 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Familjen_Grotesk, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { DM_Sans, Space_Grotesk } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { ACCELERATOR, SITE } from "@/lib/site";
 import "./globals.css";
 
-const head = Familjen_Grotesk({
+const display = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-head",
+  variable: "--font-display",
   display: "swap",
 });
 
-const sans = IBM_Plex_Sans({
+const sans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   variable: "--font-sans",
-  display: "swap",
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
   display: "swap",
 });
 
@@ -61,7 +52,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbfaf7",
+  themeColor: "#ffffff",
   colorScheme: "light",
 };
 
@@ -71,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${head.variable} ${sans.variable} ${mono.variable}`}
+      className={`${display.variable} ${sans.variable}`}
     >
       <body>
         <script

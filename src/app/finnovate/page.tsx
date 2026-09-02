@@ -13,80 +13,97 @@ export const metadata: Metadata = {
 export default function FinnovatePage() {
   return (
     <>
-      <section className="shell pt-14 pb-10">
+      <section className="shell pt-12 pb-10">
         <Reveal>
-          <p className="log">finnovate — live pitch competition</p>
-          <h1 className="h-hero mt-5 max-w-[14ch]">
-            Startup <span className="mark">Spotlight.</span>
-          </h1>
-          <p className="prose mt-6 text-[17px]">
+          <p className="t-kicker">Finnovate · Live pitch competition</p>
+          <h1 className="t-hero mt-2 max-w-[14ch]">Startup Spotlight.</h1>
+          <p className="t-lead prose-w mt-5">
             More than 20 teams presented their ventures to six business
-            professionals. The top three shared more than $2,500 in prize
-            money. Built with our DECA chapter.
+            professionals. The top three shared more than $2,500 in prize money.
           </p>
         </Reveal>
       </section>
 
-      <section className="shell pb-12">
-        <div className="bar grid grid-cols-2 gap-y-8 pt-8 sm:grid-cols-4">
+      <section className="shell pb-14">
+        <div className="tile grid gap-8 p-8 sm:grid-cols-2 lg:grid-cols-4 lg:p-10">
           {FINNOVATE.stats.map((s) => (
             <div key={s.label}>
-              <p className="big-num text-[2.7rem] leading-none">{s.value}</p>
-              <p className="log mt-2">{s.label.toLowerCase()}</p>
+              <p className="t-num text-[2.25rem] leading-none">{s.value}</p>
+              <p className="muted mt-2 text-[14.5px]">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="shell pb-14">
+      <section className="shell pb-16">
         <Reveal>
-          <div className="flex flex-wrap items-baseline justify-between gap-4">
-            <h2 className="h2">The night, pinned up</h2>
-            <p className="log">click a photo — arrow keys move through</p>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="t-kicker">The event</p>
+              <h2 className="t-h2 mt-2">Built with our DECA chapter</h2>
+            </div>
+            <p className="soft max-w-[30ch] text-[14px]">
+              Click any photo to open it. Arrow keys move through the set.
+            </p>
           </div>
         </Reveal>
-        <div className="mt-7">
+        <div className="mt-8">
           <Gallery />
         </div>
       </section>
 
-      <section className="shell pb-14">
-        <div className="bar grid gap-x-14 gap-y-8 pt-7 lg:grid-cols-2">
+      <section className="shell pb-16">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <h2 className="h2">Eight months of writing</h2>
-            <p className="prose mt-3 text-[15.5px]">
-              Finnovate also published student-focused explanations of current
-              fintech topics about once a week — turning the news into
-              something a high schooler could actually use.
+            <p className="t-kicker">Finnovate on Substack</p>
+            <h2 className="t-h2 mt-2">Eight months of writing</h2>
+            <p className="t-lead mt-4">
+              Student-focused explanations of current fintech topics, published
+              about once a week — turning the news into something a high
+              schooler could actually use.
             </p>
           </Reveal>
-          <div className="rows">
-            {[
-              ["months published", "8"],
-              ["cadence", "about weekly"],
-              ["audience", "students"],
-              ["focus", "current fintech topics"],
-            ].map(([k, v]) => (
-              <div key={k} className="flex items-baseline justify-between gap-6 py-3">
-                <span className="log">{k}</span>
-                <span className="text-[15px] font-semibold">{v}</span>
-              </div>
-            ))}
-          </div>
+          <Reveal delay={70}>
+            <dl className="card rows p-6">
+              {[
+                ["Months published", "8"],
+                ["Cadence", "About weekly"],
+                ["Audience", "Students"],
+                ["Focus", "Current fintech topics"],
+              ].map(([k, v]) => (
+                <div
+                  key={k}
+                  className="flex items-baseline justify-between gap-6 py-3"
+                >
+                  <dt className="soft text-[14px]">{k}</dt>
+                  <dd className="text-[15px] font-bold">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
       </section>
 
-      <section className="shell pb-8">
-        <div className="bar flex flex-wrap items-baseline justify-between gap-6 pt-7">
-          <h2 className="h2 max-w-[24ch] text-[26px]">
-            The Fall 2026 cohort ends on a stage too.
-          </h2>
-          <div className="flex flex-wrap items-center gap-5">
-            <a href={ACCELERATOR_FORM} target="_blank" rel="noopener noreferrer" className="btn">
+      <section className="shell pb-4">
+        <div className="on-blue flex flex-wrap items-center justify-between gap-5 rounded-[18px] p-8">
+          <p className="max-w-[26ch] text-[20px] font-extrabold tracking-[-0.025em]">
+            The Fall 2026 cohort ends in a pitch night too.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={ACCELERATOR_FORM}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-white"
+            >
               Apply to the cohort
             </a>
-            <Link href="/accelerator" className="a text-[15.5px]">
-              The accelerator
+            <Link
+              href="/accelerator"
+              className="btn"
+              style={{ border: "1px solid rgba(255,255,255,.35)", color: "#fff" }}
+            >
+              View the accelerator
             </Link>
           </div>
         </div>

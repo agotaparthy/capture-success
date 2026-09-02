@@ -20,144 +20,79 @@ export const metadata: Metadata = {
   description: `A free six-week accelerator for student founders in grades 9 and up. ${ACCELERATOR.rangeLabel}, Mondays ${ACCELERATOR.time} at ${ACCELERATOR.venue.name}, ${ACCELERATOR.venue.building}.`,
 };
 
+const FACTS = [
+  ["Dates", ACCELERATOR.rangeLabel],
+  ["Sessions", `Six Mondays · ${ACCELERATOR.time}`],
+  ["Eligibility", ACCELERATOR.grades],
+  ["Venue", `${ACCELERATOR.venue.name}, ${ACCELERATOR.venue.building}`],
+  ["Cost", "Free — dinner every session"],
+  ["Closing night", ACCELERATOR.pitch],
+];
+
 export default function AcceleratorPage() {
   return (
     <>
-      <section className="shell pt-14 pb-10">
+      <section className="shell grid items-center gap-12 pt-12 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <Reveal>
-          <p className="log">
-            the accelerator — fall 2026 — applications open
-          </p>
-          <h1 className="h-hero mt-5 max-w-[17ch]">
-            Six weeks to turn your idea into a{" "}
-            <span className="mark">real startup.</span>
+          <span className="pill">
+            <span className="dot" />
+            Applications open · {ACCELERATOR.cohort}
+          </span>
+          <h1 className="t-hero mt-5 max-w-[15ch]">
+            Six weeks to turn your idea into a real startup.
           </h1>
-          <p className="prose mt-6 text-[18px]">
-            Free and in person, for student founders in grades 9 and up. Come
-            solo and we will match you with a team, or bring your own. From
-            Chapel Hill to RTP, we plug student teams straight into the
-            Triangle startup scene.
+          <p className="t-lead prose-w mt-5">
+            A free, in-person program for student founders in grades 9 and up.
+            Come solo and we will match you with a team, or bring your own. From
+            Chapel Hill to RTP, we plug student teams straight into the Triangle
+            startup scene.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-5">
-            <a href={ACCELERATOR_FORM} target="_blank" rel="noopener noreferrer" className="btn">
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={ACCELERATOR_FORM}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
               Apply for the cohort
             </a>
-            <Link href="#weeks" className="a text-[16px]">
+            <Link href="#weeks" className="btn btn-outline">
               See the six weeks
             </Link>
           </div>
         </Reveal>
-      </section>
 
-      <section className="shell pb-14">
-        <div className="bar grid gap-x-12 gap-y-8 pt-7 lg:grid-cols-[1fr_1fr]">
-          <div>
-            <p className="log">first session in</p>
+        <Reveal delay={90}>
+          <div className="card p-6">
+            <p className="t-kicker">First session begins in</p>
             <div className="mt-3">
               <Countdown iso={ACCELERATOR.startsAt} />
             </div>
-            <p className="prose mt-6 text-[15px]">
-              Every Monday has one job: lock the problem, prove the demand,
-              build the thing, make the business work, tell the story. Week six
-              is a stage with judges on it.
-            </p>
-          </div>
-          <div className="rows">
-            {[
-              ["dates", ACCELERATOR.rangeLabel],
-              ["sessions", `six Mondays · ${ACCELERATOR.time}`],
-              ["eligibility", ACCELERATOR.grades],
-              ["venue", `${ACCELERATOR.venue.name}, ${ACCELERATOR.venue.building}`],
-              ["address", `${ACCELERATOR.venue.street}, ${ACCELERATOR.venue.city}`],
-              ["cost", "free — dinner every session"],
-              ["closing night", ACCELERATOR.pitch],
-            ].map(([k, v]) => (
-              <div key={k} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 py-2.5">
-                <span className="log">{k}</span>
-                <span className="text-[15px] font-medium">{v}</span>
-              </div>
-            ))}
-            <div className="py-2.5">
-              <a href={ACCELERATOR.venue.maps} target="_blank" rel="noopener noreferrer" className="a text-[14.5px]">
-                Open Frontier RTP in Maps
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="weeks" className="scroll-mt-20 text-white" style={{ background: "var(--color-navy)" }}>
-        <div className="shell py-16">
-          <Reveal>
-            <p className="log" style={{ color: "var(--color-sky)" }}>
-              the programme — six mondays
-            </p>
-            <h2 className="h2 mt-3">Every Monday has a job.</h2>
-          </Reveal>
-          <div className="mt-8">
-            <WeekRail />
-          </div>
-        </div>
-      </section>
-
-      <section className="shell py-16">
-        <Reveal>
-          <h2 className="h2 max-w-[20ch]">
-            What you get is tied to <span className="mark">the work.</span>
-          </h2>
-        </Reveal>
-        <div className="mt-9 grid gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-          {BENEFITS.map((b) => (
-            <div key={b.n} className="bar pt-4">
-              <p className="log">{b.n}</p>
-              <h3 className="h3 mt-1.5 text-[17px]">{b.title}</h3>
-              <p className="prose mt-1.5 text-[14px]">{b.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="shell pb-16">
-        <div className="grid items-start gap-x-14 gap-y-10 lg:grid-cols-[1fr_1fr]">
-          <Reveal>
-            <h2 className="h2">Bring your team. Sign up.</h2>
-            <div className="rows bar mt-6">
-              {HOW_TO_JOIN.map((h) => (
-                <div key={h.n} className="grid gap-x-6 py-4 md:grid-cols-[44px_1fr]">
-                  <p className="log pt-1">{h.n}</p>
-                  <div>
-                    <h3 className="h3 text-[17px]">{h.title}</h3>
-                    <p className="prose mt-1 text-[14.5px]">{h.body}</p>
-                  </div>
+            <dl className="rows mt-6">
+              {FACTS.map(([k, v]) => (
+                <div
+                  key={k}
+                  className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-3"
+                >
+                  <dt className="soft text-[14px]">{k}</dt>
+                  <dd className="text-right text-[14.5px] font-semibold">{v}</dd>
                 </div>
               ))}
-            </div>
-            <a href={ACCELERATOR_FORM} target="_blank" rel="noopener noreferrer" className="btn mt-7">
-              Open the application
+            </dl>
+            <a
+              href={ACCELERATOR.venue.maps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lnk mt-4 text-[14.5px]"
+            >
+              {ACCELERATOR.venue.street}, {ACCELERATOR.venue.city}{" "}
+              <span aria-hidden>↗</span>
             </a>
-            <p className="log mt-3">about two minutes — the idea, not the essay</p>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <figure className="print tilt-r">
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <Image
-                  src="/media/finnovate/award-presentation.webp"
-                  alt="Award presentation at a Capture Success event"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 46vw"
-                  className="object-cover"
-                />
-              </div>
-              <figcaption className="log mt-2.5">
-                how week six ends — judges, awards, the triangle startup crowd
-              </figcaption>
-            </figure>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
-      <section className="shell pb-16">
+      <section className="shell pb-20">
         <Reveal>
           <PartnerWall
             heading="The room we put you in"
@@ -166,39 +101,151 @@ export default function AcceleratorPage() {
         </Reveal>
       </section>
 
-      <section id="faq" className="shell scroll-mt-20 pb-16">
-        <Reveal>
-          <div className="flex flex-wrap items-baseline justify-between gap-4">
-            <h2 className="h2">Before you apply</h2>
-            <p className="log">
-              still unsure — <a href={`mailto:${SITE.email}`} className="a">{SITE.email}</a>
+      <section id="weeks" className="on-navy scroll-mt-24">
+        <div className="shell py-20">
+          <Reveal>
+            <p className="t-kicker" style={{ color: "var(--color-brand)" }}>
+              The programme
             </p>
+            <h2 className="t-h2 mt-2">Six weeks. Real deadlines.</h2>
+            <p
+              className="mt-3 max-w-[54ch] text-[17px]"
+              style={{ color: "rgba(255,255,255,.75)" }}
+            >
+              Define the problem, test the demand, build the product, make the
+              business work, tell the story.
+            </p>
+          </Reveal>
+          <div className="mt-8">
+            <WeekRail />
           </div>
+        </div>
+      </section>
+
+      <section className="shell py-20">
+        <Reveal>
+          <p className="t-kicker">What participants get</p>
+          <h2 className="t-h2 mt-2">Support tied to the work</h2>
         </Reveal>
-        <div className="rows bar mt-6">
-          {FAQ.map((f) => (
-            <details key={f.q} className="group py-4">
-              <summary className="h3 flex cursor-pointer list-none items-baseline justify-between gap-6 text-[17.5px]">
-                {f.q}
-                <span className="log shrink-0 group-open:hidden">more</span>
-                <span className="log hidden shrink-0 group-open:inline">less</span>
-              </summary>
-              <p className="prose mt-2 text-[15px]">{f.a}</p>
-            </details>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {BENEFITS.map((b, i) => (
+            <Reveal key={b.n} delay={(i % 4) * 60}>
+              <div className="card h-full p-5">
+                <p className="t-num text-[15px]" style={{ color: "var(--color-blue)" }}>
+                  {b.n}
+                </p>
+                <p className="t-h3 mt-3 text-[16px]">{b.title}</p>
+                <p className="muted mt-2 text-[14.5px]">{b.body}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="shell pb-8">
-        <div className="px-8 py-12 text-white sm:px-12" style={{ background: "var(--color-blue)" }}>
-          <p className="log" style={{ color: "rgba(255,255,255,.7)" }}>
-            {ACCELERATOR.rangeLabel.toLowerCase()} · final pitch night {WEEKS[5].date.toLowerCase()}
-          </p>
-          <h2 className="h2 mt-3 max-w-[18ch]">Build with us this fall.</h2>
-          <a href={ACCELERATOR_FORM} target="_blank" rel="noopener noreferrer" className="btn btn-paper mt-7">
-            Open the application
-          </a>
+      <section className="shell pb-20">
+        <div className="tile grid gap-10 p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
+          <Reveal>
+            <p className="t-kicker">How to join</p>
+            <h2 className="t-h2 mt-2 max-w-[14ch]">Bring your team. Sign up.</h2>
+            <a
+              href={ACCELERATOR_FORM}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary mt-6"
+            >
+              Open the application
+            </a>
+            <p className="soft mt-3 text-[14px]">
+              About two minutes — we care about the idea, not the essay.
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="rows">
+              {HOW_TO_JOIN.map((h) => (
+                <div key={h.n} className="flex gap-4 py-4 first:pt-0">
+                  <span
+                    className="t-num shrink-0 text-[15px]"
+                    style={{ color: "var(--color-blue)" }}
+                  >
+                    {h.n}
+                  </span>
+                  <div>
+                    <p className="t-h3 text-[16px]">{h.title}</p>
+                    <p className="muted mt-1 text-[14.5px]">{h.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
+      </section>
+
+      <section className="shell pb-20">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <Reveal>
+            <p className="t-kicker">Questions</p>
+            <h2 className="t-h2 mt-2">Before you apply</h2>
+            <p className="muted mt-4 max-w-[30ch] text-[15px]">
+              Still unsure? Email{" "}
+              <a href={`mailto:${SITE.email}`} className="lnk">
+                {SITE.email}
+              </a>
+            </p>
+          </Reveal>
+          <Reveal delay={70}>
+            <div className="card divide-y overflow-hidden">
+              {FAQ.map((f) => (
+                <details key={f.q} className="group px-5 py-4">
+                  <summary className="t-h3 flex cursor-pointer list-none items-start justify-between gap-6 text-[16px]">
+                    {f.q}
+                    <span
+                      aria-hidden
+                      className="mt-0.5 shrink-0 transition-transform duration-200 group-open:rotate-45"
+                      style={{ color: "var(--color-blue)" }}
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="muted mt-2 max-w-[62ch] text-[15px]">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="shell pb-4">
+        <Reveal>
+          <div className="on-blue grid items-center gap-8 rounded-[18px] p-8 lg:grid-cols-[1.1fr_0.9fr] lg:p-12">
+            <div>
+              <p className="text-[26px] font-extrabold leading-tight tracking-[-0.03em]">
+                Build with us this fall.
+              </p>
+              <p className="mt-3 text-[16px]" style={{ color: "rgba(255,255,255,.85)" }}>
+                {ACCELERATOR.rangeLabel} · Mondays {ACCELERATOR.time} ·{" "}
+                {ACCELERATOR.venue.name} · Free. {WEEKS[5].title} on{" "}
+                {WEEKS[5].date}.
+              </p>
+              <a
+                href={ACCELERATOR_FORM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-white mt-6"
+              >
+                Open the application
+              </a>
+            </div>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px]">
+              <Image
+                src="/media/finnovate/award-presentation.webp"
+                alt="Award presentation at a Capture Success event"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </Reveal>
       </section>
     </>
   );

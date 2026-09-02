@@ -31,17 +31,17 @@ export default function Gallery() {
 
   return (
     <>
-      <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {PHOTOS.map((p, i) => (
           <button
             key={p.src}
             type="button"
             onClick={() => setOpen(i)}
-            className={`group print text-left ${i === 0 ? "sm:col-span-2 tilt-l" : i % 2 ? "tilt-r" : "tilt-l"}`}
+            className={`group text-left ${i === 0 ? "sm:col-span-2" : ""}`}
             aria-label={`View photo: ${p.title}`}
           >
             <span
-              className={`relative block w-full overflow-hidden ${
+              className={`relative block w-full overflow-hidden  border ${
                 i === 0 ? "aspect-[16/9]" : "aspect-[4/3]"
               }`}
             >
@@ -57,9 +57,9 @@ export default function Gallery() {
                 className="object-cover transition-transform duration-[1s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.03]"
               />
             </span>
-            <span className="mt-2 block px-1">
-              <span className="h3 block text-[15.5px]">{p.title}</span>
-              <span className="log mt-0.5 block">
+            <span className="mt-2.5 block">
+              <span className="block text-[14.5px] font-semibold">{p.title}</span>
+              <span className="soft mt-0.5 block text-[13px]">
                 {p.caption}
               </span>
             </span>
